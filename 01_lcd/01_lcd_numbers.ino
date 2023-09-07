@@ -8,7 +8,6 @@ LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 #define AINPUT A1
 #define AINPUT33 A0
 
-// Function prototype (declaration)
 void voltage_calc();
 
 void setup() {
