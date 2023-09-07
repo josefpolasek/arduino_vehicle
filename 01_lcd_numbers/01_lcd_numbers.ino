@@ -5,28 +5,50 @@
 const int rs = 37, en = 36, d4 = 35, d5 = 34, d6 = 33, d7 = 32;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
+#define RED_LIGHT_LEFT 23
+#define YELLOW_LIGHT_LEFT 25
+#define GREEN_LIGHT_LEFT 27
+
+#define RED_LIGHT_RIGHT 22
+#define YELLOW_LIGHT_RIGHT 24
+#define GREEN_LIGHT_RIGHT 26
+
 #define AINPUT A1
 #define AINPUT33 A0
 
-// Function prototype (declaration)
-void voltage_calc();
-
 void setup() {
   lcd.begin(16, 2);
+  pinMode(RED_LIGHT_LEFT, OUTPUT);
+  pinMode(YELLOW_LIGHT_LEFT, OUTPUT);
+  pinMode(GREEN_LIGHT_LEFT, OUTPUT);
+  pinMode(RED_LIGHT_RIGHT, OUTPUT);
+  pinMode(YELLOW_LIGHT_RIGHT, OUTPUT);
+  pinMode(GREEN_LIGHT_RIGHT, OUTPUT);
 }
 
 void loop() {
-  voltage_calc();
-}
+  digitalWrite(GREEN_LIGHT_LEFT, HIGH);
+  digitalWrite(RED_LIGHT_RIGHT, HIGH);
+  delay(1000);
+  digitalWrite(GREEN_LIGHT_LEFT, LOW);
+  digitalWrite(RED_LIGHT_RIGHT, LOW);
 
-void voltage_calc() {
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.write("pot = ");
-  lcd.print(analogRead(AINPUT) * 5.0 / 1023, 2);
+  digitalWrite(YELLOW_LIGHT_RIGHT, HIGH);
+  digitalWrite(YELLOW_LIGHT_LEFT, HIGH);
+  delay(1000);
+  digitalWrite(YELLOW_LIGHT_LEFT, LOW);
+  digitalWrite(YELLOW_LIGHT_RIGHT, LOW);
 
-  lcd.setCursor(0, 1);
-  lcd.write("3.3 = ");
-  lcd.print(analogRead(AINPUT33) * 5.0 / 1023, 1);
-  delay(50);
+  digitalWrite(RED_LIGHT_LEFT, HIGH);
+  digitalWrite(GREEN_LIGHT_RIGHT, HIGH);
+  delay(1000);
+  digitalWrite(GREEN_LIGHT_RIGHT, LOW);
+  digitalWrite(RED_LIGHT_LEFT, LOW);
+
+  digitalWrite(YELLOW_LIGHT_LEFT, HIGH);
+  digitalWrite(YELLOW_LIGHT_RIGHT, HIGH);
+  delay(1000);
+  digitalWrite(YELLOW_LIGHT_RIGHT, LOW);
+  digitalWrite(YELLOW_LIGHT_LEFT, LOW);
+  Serial.println("one loop");
 }
