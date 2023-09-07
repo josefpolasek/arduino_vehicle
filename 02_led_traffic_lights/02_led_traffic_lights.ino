@@ -1,9 +1,7 @@
 #include <Arduino.h>
-#include <LiquidCrystal.h>
 #include <Wire.h>
 
 const int rs = 37, en = 36, d4 = 35, d5 = 34, d6 = 33, d7 = 32;
-LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
 #define RED_LIGHT_LEFT 23
 #define YELLOW_LIGHT_LEFT 25
@@ -17,7 +15,6 @@ LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 #define AINPUT33 A0
 
 void setup() {
-  lcd.begin(16, 2);
   pinMode(RED_LIGHT_LEFT, OUTPUT);
   pinMode(YELLOW_LIGHT_LEFT, OUTPUT);
   pinMode(GREEN_LIGHT_LEFT, OUTPUT);
@@ -29,25 +26,26 @@ void setup() {
 void loop() {
   digitalWrite(GREEN_LIGHT_LEFT, HIGH);
   digitalWrite(RED_LIGHT_RIGHT, HIGH);
-  delay(2000);
+  delay(1000);
   digitalWrite(GREEN_LIGHT_LEFT, LOW);
+  digitalWrite(RED_LIGHT_RIGHT, LOW);
 
   digitalWrite(YELLOW_LIGHT_RIGHT, HIGH);
   digitalWrite(YELLOW_LIGHT_LEFT, HIGH);
-  delay(2000);
+  delay(1000);
   digitalWrite(YELLOW_LIGHT_LEFT, LOW);
   digitalWrite(YELLOW_LIGHT_RIGHT, LOW);
-  digitalWrite(RED_LIGHT_RIGHT, LOW);
 
   digitalWrite(RED_LIGHT_LEFT, HIGH);
   digitalWrite(GREEN_LIGHT_RIGHT, HIGH);
-  delay(2000);
+  delay(1000);
   digitalWrite(GREEN_LIGHT_RIGHT, LOW);
+  digitalWrite(RED_LIGHT_LEFT, LOW);
 
   digitalWrite(YELLOW_LIGHT_LEFT, HIGH);
   digitalWrite(YELLOW_LIGHT_RIGHT, HIGH);
-  delay(2000);
+  delay(1000);
   digitalWrite(YELLOW_LIGHT_RIGHT, LOW);
   digitalWrite(YELLOW_LIGHT_LEFT, LOW);
-  digitalWrite(RED_LIGHT_LEFT, LOW);
+  Serial.println("one loop");
 }
