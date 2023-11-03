@@ -23,11 +23,8 @@ int pwm_L = 0;
 #define encoderMotorR 18
 #define encoderMotorL 19
 
-// volatile int pulseCount = 0;
 volatile int pulseCount_R = 0;
 volatile int pulseCount_L = 0;
-volatile int lastEncoderState_R = 0;
-volatile int lastEncoderState_L = 0;
 
 void handleEncoderR() { pulseCount_R++; }
 
